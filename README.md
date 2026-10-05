@@ -17,6 +17,8 @@ so Claude can show you screenshots, charts and other images it produces or finds
   to PNG and downsizes images larger than 2048 px on the longest side.
 - Draws the image under the tool call in the transcript, scaled to keep its aspect
   ratio, at most 80 columns by 40 rows. It scrolls with the conversation.
+- Adds an "open full size" link under each image. Clicking it opens the original file,
+  at full resolution, in your default image viewer.
 - The image is shown to you only. Its pixels are not sent to the model, so displaying
   an image costs no image tokens.
 

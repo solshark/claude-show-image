@@ -19,6 +19,9 @@ type Shown = {
   height: number
   generation: number
   columns?: number
+  // Dimensions of the original file, before any downscaling.
+  sourceWidth?: number
+  sourceHeight?: number
 }
 
 type Probe = { width: number; height: number; format: string }
@@ -55,6 +58,11 @@ export function decode(output: unknown): Shown | undefined {
   } catch {
     return undefined
   }
+}
+
+/** A `file://` URL for an absolute path, each segment percent-encoded. */
+export function fileUrl(path: string): string {
+  return `file://${path.split('/').map(encodeURIComponent).join('/')}`
 }
 
 const isSet = (value: string | undefined) =>
@@ -195,6 +203,8 @@ export const register: Register = on => {
       width,
       height,
       generation: Math.floor(mtimeMs),
+      sourceWidth: source.width,
+      sourceHeight: source.height,
       ...(columns === undefined ? {} : { columns }),
     }
 
@@ -204,7 +214,7 @@ export const register: Register = on => {
   on('ui.render', { component: 'ToolResult', props: { tool: TOOL_ID } }, async ($, e, next) => {
     const shown = decode(e.props.output)
     if (e.surface !== 'terminal' || e.props.isErrored || shown === undefined) return next(e)
-    const { Box, Text, Image } = $.ui.resolve(e)
+    const { Box, Text, Image, Link } = $.ui.resolve(e)
     const room = Math.max(8, (e.viewport?.columns ?? MAX_COLUMNS) - 6)
     const { columns, rows } = fitCells(
       shown.width,
@@ -223,7 +233,8 @@ export const register: Register = on => {
           alt={`[image: ${name}]`}
         />
         <Text dimColor>
-          {name} · {shown.width}×{shown.height} px
+          {name} · {shown.sourceWidth ?? shown.width}×{shown.sourceHeight ?? shown.height} px ·{' '}
+          <Link href={fileUrl(shown.path)}>open full size</Link>
         </Text>
       </Box>
     )
