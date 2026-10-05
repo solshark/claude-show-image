@@ -27,7 +27,8 @@ so Claude can show you screenshots, charts and other images it produces or finds
 - macOS. Image conversion and measurement use the built-in `sips` tool.
 - Claude Code 2.1.289 or later. The plugin uses the function hooks API, which is in
   early access and may change between releases.
-- A terminal in which Claude Code draws images: [Ghostty](https://ghostty.org) or
+- A terminal in which Claude Code draws images: [Ghostty](https://ghostty.org), a
+  Ghostty-based terminal such as [cmux](https://www.cmux.dev/) (tested with 0.64.25), or
   [kitty](https://sw.kovidgoyal.net/kitty/) 0.28 or later, not inside tmux or screen.
 
 In any other environment the tool is not registered, so Claude does not try to use it.
