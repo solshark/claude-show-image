@@ -1,0 +1,17 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "claude-show-image",
+  "description": "Inline image display for Claude Code in Ghostty and kitty.",
+  "owner": {
+    "name": "Michael Shvets",
+    "url": "https://github.com/solshark"
+  },
+  "plugins": [
+    {
+      "name": "show-image",
+      "description": "Lets Claude display image files inline in the terminal transcript (Ghostty, kitty).",
+      "source": "./",
+      "category": "productivity"
+    }
+  ]
+}

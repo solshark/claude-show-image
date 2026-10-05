@@ -1,0 +1,13 @@
+{
+  "name": "show-image",
+  "version": "0.1.0",
+  "description": "Lets Claude display image files inline in the terminal transcript (Ghostty, kitty).",
+  "author": {
+    "name": "Michael Shvets",
+    "url": "https://github.com/solshark"
+  },
+  "homepage": "https://github.com/solshark/claude-show-image",
+  "repository": "https://github.com/solshark/claude-show-image",
+  "license": "MIT",
+  "keywords": ["images", "terminal", "ghostty", "kitty", "screenshots"]
+}
